@@ -156,7 +156,26 @@ public class Person {
      */
     @Override
     public boolean equals(Object o) {
-        return false;
+        if (o == null) {
+            return false;
+        }
+        if (o == this) {
+            return true;
+        }
+        if (o instanceof Person) {
+            Person oPerson = (Person) o;
+            return oPerson.getPersonID().equals(getPersonID()) &&
+                    oPerson.getAssociatedUsername().equals(getAssociatedUsername()) &&
+                    oPerson.getFirstName().equals(getFirstName()) &&
+                    oPerson.getLastName().equals(getLastName()) &&
+                    oPerson.getGender().equals(getGender()) &&
+                    oPerson.getFatherID().equals(getFatherID()) &&
+                    oPerson.getMotherID().equals(getMotherID()) &&
+                    oPerson.getSpouseID().equals(getSpouseID());
+        }
+        else {
+            return false;
+        }
     }
 
 }

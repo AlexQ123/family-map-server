@@ -140,7 +140,25 @@ public class User {
      */
     @Override
     public boolean equals(Object o) {
-        return false;
+        if (o == null) {
+            return false;
+        }
+        if (o == this) {
+            return true;
+        }
+        if (o instanceof User) {
+            User oUser = (User) o;
+            return oUser.getUsername().equals(getUsername()) &&
+                    oUser.getPassword().equals(getPassword()) &&
+                    oUser.getEmail().equals(getEmail()) &&
+                    oUser.getFirstName().equals(getFirstName()) &&
+                    oUser.getLastName().equals(getLastName()) &&
+                    oUser.getGender().equals(getGender()) &&
+                    oUser.getPersonID().equals(getPersonID());
+        }
+        else {
+            return false;
+        }
     }
 
 }

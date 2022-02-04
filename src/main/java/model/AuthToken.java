@@ -23,6 +23,12 @@ public class AuthToken {
         this.username = null;
     }
 
+    /**
+     * Creates an authorization token with all information
+     *
+     * @param authtoken the unique authorization token
+     * @param username the username associated with the authorization token
+     */
     public AuthToken(String authtoken, String username) {
         this.authtoken = authtoken;
         this.username = username;
@@ -53,7 +59,20 @@ public class AuthToken {
      */
     @Override
     public boolean equals(Object o) {
-        return false;
+        if (o == null) {
+            return false;
+        }
+        if (o == this) {
+            return true;
+        }
+        if (o instanceof AuthToken) {
+            AuthToken oAuthToken = (AuthToken) o;
+            return oAuthToken.getUsername().equals(getUsername()) &&
+                    oAuthToken.getAuthtoken().equals(getAuthtoken());
+        }
+        else {
+            return false;
+        }
     }
 
 }
