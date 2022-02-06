@@ -1,35 +1,35 @@
 package service.result;
 
-import model.Person;
+import model.Event;
 
 /**
- * The result of returning all family members of a user.
+ * The result of returning all events of all family members of a user.
  */
-public class AllPersonsResult {
+public class AllEventsResult {
 
     /**
-     * The array of persons in the response body.
+     * The array of events in the response body.
      */
-    private Person[] persons;
+    private Event[] events;
 
     /**
-     * Whether the all persons service was successful.
+     * Whether the all events service was successful.
      */
     private boolean success;
 
     /**
-     * The error message if all persons was not successful.
+     * The error message if all events was not successful.
      */
     private String message;
 
     /**
      * Create a successful response body.
      *
-     * @param persons response body data
+     * @param events response body data
      * @param success response body success
      */
-    public AllPersonsResult(Person[] persons, boolean success) {
-        this.persons = persons;
+    public AllEventsResult(Event[] events, boolean success) {
+        this.events = events;
         this.success = success;
         this.message = null;
     }
@@ -40,19 +40,19 @@ public class AllPersonsResult {
      * @param success response body failure
      * @param message response body error message
      */
-    public AllPersonsResult(boolean success, String message) {
-        this.persons = null;
+    public AllEventsResult(boolean success, String message) {
+        this.events = null;
         this.success = success;
         this.message = message;
     }
 
     // Auto-generated getters and setters, no javadoc needed
-    public Person[] getPersons() {
-        return persons;
+    public Event[] getEvents() {
+        return events;
     }
 
-    public void setPersons(Person[] persons) {
-        this.persons = persons;
+    public void setEvents(Event[] events) {
+        this.events = events;
     }
 
     public boolean isSuccess() {

@@ -46,12 +46,12 @@ public class SinglePersonResult {
     private String spouseID;
 
     /**
-     * Whether the register service was successful.
+     * Whether the single person service was successful.
      */
     private boolean success;
 
     /**
-     * The error message if registering was not successful.
+     * The error message if single person was not successful.
      */
     private String message;
 

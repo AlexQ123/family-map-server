@@ -8,7 +8,8 @@ import service.result.SinglePersonResult;
 public class SinglePersonService {
 
     /**
-     * Gets the single person with the specified ID.
+     * Gets the single person with the specified ID if the person is associated with the current user
+     * (the current user is determined by the provided authtoken).
      *
      * @return the response body indicating success or error
      */
