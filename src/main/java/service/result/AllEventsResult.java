@@ -1,6 +1,7 @@
 package service.result;
 
 import model.Event;
+import java.util.ArrayList;
 
 /**
  * The result of returning all events of all family members of a user.
@@ -10,7 +11,7 @@ public class AllEventsResult {
     /**
      * The array of events in the response body.
      */
-    private Event[] events;
+    private ArrayList<Event> events;
 
     /**
      * Whether the all events service was successful.
@@ -28,7 +29,7 @@ public class AllEventsResult {
      * @param events response body data
      * @param success response body success
      */
-    public AllEventsResult(Event[] events, boolean success) {
+    public AllEventsResult(ArrayList<Event> events, boolean success) {
         this.events = events;
         this.success = success;
         this.message = null;
@@ -47,11 +48,11 @@ public class AllEventsResult {
     }
 
     // Auto-generated getters and setters, no javadoc needed
-    public Event[] getEvents() {
+    public ArrayList<Event> getEvents() {
         return events;
     }
 
-    public void setEvents(Event[] events) {
+    public void setEvents(ArrayList<Event> events) {
         this.events = events;
     }
 

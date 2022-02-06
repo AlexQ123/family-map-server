@@ -3,7 +3,7 @@ package dao;
 import model.Person;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A DAO for the person table.
@@ -57,7 +57,7 @@ public class PersonDAO {
      * @return a list of people
      * @throws SQLException errors in the database
      */
-    public List<Person> findFamily(String username) throws SQLException {
+    public ArrayList<Person> findFamily(String username) throws SQLException {
         return null;
     }
 

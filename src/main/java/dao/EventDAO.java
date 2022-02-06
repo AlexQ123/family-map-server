@@ -3,7 +3,7 @@ package dao;
 import model.Event;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A DAO for the event table.
@@ -57,7 +57,7 @@ public class EventDAO {
      * @return a list of events
      * @throws SQLException errors in the database
      */
-    public List<Event> findAllEvents(String username) throws SQLException {
+    public ArrayList<Event> findAllEvents(String username) throws SQLException {
         return null;
     }
 

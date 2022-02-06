@@ -1,6 +1,5 @@
 package service;
 
-import service.request.FillRequest;
 import service.result.FillResult;
 
 /**
@@ -11,10 +10,11 @@ public class FillService {
     /**
      * Fills the server's database with generated data for the specified username after deleting any existing data.
      *
-     * @param r the request body with the information for filling
+     * @param username the username to fill data for
+     * @param generations the specified number of generations
      * @return the response body indicating success or error
      */
-    public FillResult fill(FillRequest r) {
+    public FillResult fill(String username, int generations) {
         return null;
     }
 

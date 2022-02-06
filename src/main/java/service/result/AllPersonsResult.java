@@ -1,6 +1,7 @@
 package service.result;
 
 import model.Person;
+import java.util.ArrayList;
 
 /**
  * The result of returning all family members of a user.
@@ -10,7 +11,7 @@ public class AllPersonsResult {
     /**
      * The array of persons in the response body.
      */
-    private Person[] persons;
+    private ArrayList<Person> persons;
 
     /**
      * Whether the all persons service was successful.
@@ -28,7 +29,7 @@ public class AllPersonsResult {
      * @param persons response body data
      * @param success response body success
      */
-    public AllPersonsResult(Person[] persons, boolean success) {
+    public AllPersonsResult(ArrayList<Person> persons, boolean success) {
         this.persons = persons;
         this.success = success;
         this.message = null;
@@ -47,11 +48,11 @@ public class AllPersonsResult {
     }
 
     // Auto-generated getters and setters, no javadoc needed
-    public Person[] getPersons() {
+    public ArrayList<Person> getPersons() {
         return persons;
     }
 
-    public void setPersons(Person[] persons) {
+    public void setPersons(ArrayList<Person> persons) {
         this.persons = persons;
     }
 
