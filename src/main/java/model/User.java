@@ -31,7 +31,7 @@ public class User {
     private String lastName;
 
     /**
-     * The user's gender, can be "f" or "m"
+     * The user's gender, can be "f" or "m".
      */
     private String gender;
 

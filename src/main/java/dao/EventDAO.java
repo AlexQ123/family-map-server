@@ -5,6 +5,9 @@ import model.Event;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * A DAO for the event table.
+ */
 public class EventDAO {
 
     /**

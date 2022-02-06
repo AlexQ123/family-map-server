@@ -4,6 +4,9 @@ import model.AuthToken;
 
 import java.sql.SQLException;
 
+/**
+ * A DAO for the authtoken table.
+ */
 public class AuthTokenDAO {
 
     /**

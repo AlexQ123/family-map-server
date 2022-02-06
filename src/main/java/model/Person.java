@@ -26,7 +26,7 @@ public class Person {
     private String lastName;
 
     /**
-     * The person's gender, can be "f" or "m"
+     * The person's gender, can be "f" or "m".
      */
     private String gender;
 

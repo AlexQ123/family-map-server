@@ -5,6 +5,9 @@ import model.Person;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * A DAO for the person table.
+ */
 public class PersonDAO {
 
     /**

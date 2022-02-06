@@ -4,6 +4,9 @@ import model.User;
 
 import java.sql.SQLException;
 
+/**
+ * A DAO for the user table.
+ */
 public class UserDAO {
 
     /**
