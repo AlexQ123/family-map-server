@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.Connection;
+import java.sql.ResultSet;
 
 /**
  * A DAO for the person table.
@@ -78,6 +79,34 @@ public class PersonDAO {
      * @throws DataAccessException errors in the database
      */
     public Person findPerson(String id) throws DataAccessException {
+        Person person;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM Person WHERE personID = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, id);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                person = new Person(rs.getString("personID"), rs.getString("associatedUsername"),
+                        rs.getString("firstName"), rs.getString("lastName"), rs.getString("gender"),
+                        rs.getString("fatherID"), rs.getString("motherID"), rs.getString("spouseID"));
+                return person;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding person");
+        }
+        finally {
+            if(rs != null) {
+                try {
+                    rs.close();
+                }
+                catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
         return null;
     }
 
