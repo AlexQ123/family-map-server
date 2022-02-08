@@ -2,22 +2,47 @@ package dao;
 
 import model.Person;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.Connection;
 
 /**
  * A DAO for the person table.
  */
 public class PersonDAO {
 
+    private final Connection conn;
+
+    public PersonDAO(Connection conn) {
+        this.conn = conn;
+    }
+
     /**
      * Creates a new person (person row in the database).
      *
      * @param person the person being inserted
-     * @throws SQLException errors in the database
+     * @throws DataAccessException errors in the database
      */
-    public void insertPerson(Person person) throws SQLException {
+    public void insertPerson(Person person) throws DataAccessException {
+        String sql = "INSERT INTO Person (personID, associatedUsername, firstName, lastName, gender, fatherID, " +
+                "motherID, spouseID) VALUES(?,?,?,?,?,?,?,?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, person.getPersonID());
+            stmt.setString(2, person.getAssociatedUsername());
+            stmt.setString(3, person.getFirstName());
+            stmt.setString(4, person.getLastName());
+            stmt.setString(5, person.getGender());
+            stmt.setString(6, person.getFatherID());
+            stmt.setString(7, person.getMotherID());
+            stmt.setString(8, person.getSpouseID());
 
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new DataAccessException("Error encountered while inserting into the database");
+        }
     }
 
     /**
@@ -26,16 +51,22 @@ public class PersonDAO {
      * @throws SQLException errors in the database
      */
     public void clearPerson() throws SQLException {
-
+        try (Statement stmt = conn.createStatement()){
+            String sql = "DELETE FROM Person";
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException e) {
+            throw new SQLException();
+        }
     }
 
     /**
      * Deletes all person objects associated with a user.
      *
      * @param username the username to remove person all info from
-     * @throws SQLException errors in the database
+     * @throws DataAccessException errors in the database
      */
-    public void deleteFromUser(String username) throws SQLException {
+    public void deleteFromUser(String username) throws DataAccessException {
 
     }
 
@@ -44,9 +75,9 @@ public class PersonDAO {
      *
      * @param id the ID of the person to find
      * @return the person whose ID matches
-     * @throws SQLException errors in the database
+     * @throws DataAccessException errors in the database
      */
-    public Person findPerson(String id) throws SQLException {
+    public Person findPerson(String id) throws DataAccessException {
         return null;
     }
 
@@ -55,9 +86,9 @@ public class PersonDAO {
      *
      * @param username the username of the user
      * @return a list of people
-     * @throws SQLException errors in the database
+     * @throws DataAccessException errors in the database
      */
-    public ArrayList<Person> findFamily(String username) throws SQLException {
+    public ArrayList<Person> findFamily(String username) throws DataAccessException {
         return null;
     }
 
