@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 /**
  * A person.
  */
@@ -169,9 +171,9 @@ public class Person {
                     oPerson.getFirstName().equals(getFirstName()) &&
                     oPerson.getLastName().equals(getLastName()) &&
                     oPerson.getGender().equals(getGender()) &&
-                    oPerson.getFatherID().equals(getFatherID()) &&
-                    oPerson.getMotherID().equals(getMotherID()) &&
-                    oPerson.getSpouseID().equals(getSpouseID());
+                    Objects.equals(oPerson.getFatherID(), getFatherID()) &&
+                    Objects.equals(oPerson.getMotherID(), getMotherID()) &&
+                    Objects.equals(oPerson.getSpouseID(), getSpouseID());
         }
         else {
             return false;
