@@ -70,11 +70,18 @@ public class EventDAO {
     /**
      * Deletes all event objects associated with a user.
      *
-     * @param username to username to remove all info from
+     * @param username the username to remove all info from
      * @throws DataAccessException errors in the database
      */
     public void deleteFromUser(String username) throws DataAccessException {
-
+        String sql = "DELETE FROM Event WHERE associatedUsername = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new DataAccessException("Error encountered while deleting events from a user");
+        }
     }
 
     /**
@@ -125,7 +132,29 @@ public class EventDAO {
      * @throws DataAccessException errors in the database
      */
     public ArrayList<Event> findAllEvents(String username) throws DataAccessException {
-        return null;
+        ArrayList<Event> events = new ArrayList<>();
+        ResultSet rs = null;
+        String sql = "SELECT * FROM Event WHERE associatedUsername = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Event toAdd = new Event(rs.getString("eventID"), rs.getString("associatedUsername"),
+                        rs.getString("personID"), rs.getFloat("latitude"), rs.getFloat("longitude"),
+                        rs.getString("country"), rs.getString("city"), rs.getString("eventType"),
+                        rs.getInt("year"));
+                events.add(toAdd);
+            }
+        }
+        catch (SQLException e) {
+            throw new DataAccessException("Error encountered while finding a list of events");
+        }
+        if (events.isEmpty()) {
+            return null;
+        }
+        else {
+            return events;
+        }
     }
 
 }

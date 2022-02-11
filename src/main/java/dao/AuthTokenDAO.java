@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.sql.ResultSet;
 
 /**
  * A DAO for the authtoken table.
@@ -60,7 +61,32 @@ public class AuthTokenDAO {
      * @throws DataAccessException errors in the database
      */
     public boolean validateAuthToken(AuthToken toValidate) throws DataAccessException {
-        return false;
+        boolean success = false;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM Authtoken WHERE authtoken = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, toValidate.getAuthtoken());
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                success = true;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while validating authorization token");
+        }
+        finally {
+            if(rs != null) {
+                try {
+                    rs.close();
+                }
+                catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return success;
     }
 
 }

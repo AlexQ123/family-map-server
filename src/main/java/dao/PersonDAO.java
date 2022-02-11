@@ -68,7 +68,14 @@ public class PersonDAO {
      * @throws DataAccessException errors in the database
      */
     public void deleteFromUser(String username) throws DataAccessException {
-
+        String sql = "DELETE FROM Person WHERE associatedUsername = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new DataAccessException("Error encountered while deleting persons from a user");
+        }
     }
 
     /**
@@ -118,7 +125,28 @@ public class PersonDAO {
      * @throws DataAccessException errors in the database
      */
     public ArrayList<Person> findFamily(String username) throws DataAccessException {
-        return null;
+        ArrayList<Person> people = new ArrayList<>();
+        ResultSet rs = null;
+        String sql = "SELECT * FROM Person WHERE associatedUsername = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Person toAdd = new Person(rs.getString("personID"), rs.getString("associatedUsername"),
+                        rs.getString("firstName"), rs.getString("lastName"), rs.getString("gender"),
+                        rs.getString("fatherID"), rs.getString("motherID"), rs.getString("spouseID"));
+                people.add(toAdd);
+            }
+        }
+        catch (SQLException e) {
+            throw new DataAccessException("Error encountered while finding a list of people");
+        }
+        if (people.isEmpty()) {
+            return null;
+        }
+        else {
+            return people;
+        }
     }
 
 }
