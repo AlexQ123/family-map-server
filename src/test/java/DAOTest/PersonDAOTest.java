@@ -1,3 +1,5 @@
+package DAOTest;
+
 import dao.DataAccessException;
 import dao.Database;
 import dao.PersonDAO;
