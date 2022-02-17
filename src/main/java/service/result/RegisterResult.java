@@ -31,6 +31,13 @@ public class RegisterResult {
     private String message;
 
     /**
+     * Default constructor
+     */
+    public RegisterResult() {
+
+    }
+
+    /**
      * Create a successful response body.
      *
      * @param authtoken response body authorization token

@@ -16,6 +16,13 @@ public class ClearResult {
     private boolean success;
 
     /**
+     * Default constructor
+     */
+    public ClearResult() {
+
+    }
+
+    /**
      * Create a response body.
      *
      * @param message response body message

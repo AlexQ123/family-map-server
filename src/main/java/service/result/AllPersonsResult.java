@@ -24,6 +24,13 @@ public class AllPersonsResult {
     private String message;
 
     /**
+     * Default constructor
+     */
+    public AllPersonsResult() {
+
+    }
+
+    /**
      * Create a successful response body.
      *
      * @param persons response body data

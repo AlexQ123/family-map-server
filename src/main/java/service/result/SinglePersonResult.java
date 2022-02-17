@@ -56,6 +56,13 @@ public class SinglePersonResult {
     private String message;
 
     /**
+     * Default constructor
+     */
+    public SinglePersonResult() {
+
+    }
+
+    /**
      * Create a successful response body.
      *
      * @param associatedUsername response body username

@@ -24,6 +24,13 @@ public class AllEventsResult {
     private String message;
 
     /**
+     * Default constructor
+     */
+    public AllEventsResult() {
+
+    }
+
+    /**
      * Create a successful response body.
      *
      * @param events response body data

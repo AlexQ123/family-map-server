@@ -16,6 +16,13 @@ public class LoadResult {
     private boolean success;
 
     /**
+     * Default constructor
+     */
+    public LoadResult() {
+
+    }
+
+    /**
      * Create a response body.
      *
      * @param message response body message

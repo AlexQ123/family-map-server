@@ -31,6 +31,13 @@ public class LoginResult {
     private String message;
 
     /**
+     * Default constructor
+     */
+    public LoginResult() {
+
+    }
+
+    /**
      * Create a successful response body.
      *
      * @param authtoken response body authorization token

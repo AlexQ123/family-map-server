@@ -16,6 +16,13 @@ public class FillResult {
     private boolean success;
 
     /**
+     * Default constructor
+     */
+    public FillResult() {
+
+    }
+
+    /**
      * Create a response body.
      *
      * @param message response body message

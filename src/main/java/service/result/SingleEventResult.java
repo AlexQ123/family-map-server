@@ -61,6 +61,13 @@ public class SingleEventResult {
     private String message;
 
     /**
+     * Default constructor
+     */
+    public SingleEventResult() {
+
+    }
+
+    /**
      * Create a successful response body.
      *
      * @param associatedUsername response body username
