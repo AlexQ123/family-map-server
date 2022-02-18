@@ -36,19 +36,30 @@ public class RegisterService {
             db.openConnection();
             Connection conn = db.getConnection();
 
+            db.clearTables();
+
             // make sure the username isn't already taken
             uDao = new UserDAO(conn);
             User test = uDao.findUser(r.getUsername());
             if (test != null) {
+                db.closeConnection(false);
                 return new RegisterResult(false, "Username already taken");
             }
 
             // after error checking, perform the register service
             else {
                 AncestorGenerator generator = new AncestorGenerator();
+                generator.setMaxGenerations(4);
+                generator.setUsername(r.getUsername());
+                generator.setUserFirstName(r.getFirstName());
+                generator.setUserLastName(r.getLastName());
 
                 // generate 4 generations of ancestor data, this returns the person associated with the user
+                // since generatePerson access the DB, close and re-open connection here too
+                db.closeConnection(true);
                 Person person = generator.generatePerson(r.getGender(), 4);
+                conn = db.getConnection();
+                uDao = new UserDAO(conn);
 
                 // create the user account (user row in database)
                 uDao.insertUser(new User(r.getUsername(), r.getPassword(), r.getEmail(), r.getFirstName(), r.getLastName(),
