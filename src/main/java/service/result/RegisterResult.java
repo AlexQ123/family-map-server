@@ -21,14 +21,14 @@ public class RegisterResult {
     private String personID;
 
     /**
-     * Whether the register service was successful.
-     */
-    private boolean success;
-
-    /**
      * The error message if registering was not successful.
      */
     private String message;
+
+    /**
+     * Whether the register service was successful.
+     */
+    private boolean success;
 
     /**
      * Default constructor
@@ -49,22 +49,22 @@ public class RegisterResult {
         this.authtoken = authtoken;
         this.username = username;
         this.personID = personID;
-        this.success = success;
         this.message = null;
+        this.success = success;
     }
 
     /**
      * Create an unsuccessful response body.
      *
-     * @param success response body failure
      * @param message response body error message
+     * @param success response body failure
      */
-    public RegisterResult(boolean success, String message) {
+    public RegisterResult(String message, boolean success) {
         this.authtoken = null;
         this.username = null;
         this.personID = null;
-        this.success = success;
         this.message = message;
+        this.success = success;
     }
 
     // Auto-generated getters and setters, no javadoc needed
@@ -92,20 +92,20 @@ public class RegisterResult {
         this.personID = personID;
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
     public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
 }

@@ -1,15 +1,14 @@
 package handler;
 
-import service.request.RegisterRequest;
-import service.result.RegisterResult;
-import service.RegisterService;
+import service.result.ClearResult;
+import service.ClearService;
 
 import java.io.*;
 import java.net.*;
 import com.sun.net.httpserver.*;
 import com.google.gson.Gson;
 
-public class RegisterHandler implements HttpHandler {
+public class ClearHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
@@ -19,16 +18,9 @@ public class RegisterHandler implements HttpHandler {
                 Gson gson = new Gson();
                 GSONHelper gsonHelper = new GSONHelper();
 
-                // opening input stream, getting request body, deserializing json string
-                InputStream reqBody = exchange.getRequestBody();
-                String reqData = gsonHelper.readString(reqBody);
-                RegisterRequest request = (RegisterRequest)gson.fromJson(reqData, RegisterRequest.class);
+                ClearService service = new ClearService();
+                ClearResult result = service.clear();
 
-                // performing the service
-                RegisterService service = new RegisterService();
-                RegisterResult result = service.register(request);
-
-                // sending status code and any defined headers
                 if (result.isSuccess()) {
                     exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
                 }
@@ -36,7 +28,6 @@ public class RegisterHandler implements HttpHandler {
                     exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
                 }
 
-                // opening output stream, serializing the result and writing to resBody
                 OutputStream resBody = exchange.getResponseBody();
                 String respData = gson.toJson(result);
                 gsonHelper.writeString(respData, resBody);

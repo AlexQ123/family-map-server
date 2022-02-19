@@ -33,12 +33,17 @@ public class AncestorGenerator {
         Person mother = null;
         Person father = null;
 
+        // recursively add generations of ancestors and events to the database
         if (generations > 0) {
             mother = generatePerson("f", generations - 1);
             father = generatePerson("m", generations - 1);
 
             mother.setSpouseID(father.getPersonID());
             father.setSpouseID(mother.getPersonID());
+
+            // everyone but the user's person needs to be inserted here because of setting spouseID
+            insertPerson(mother);
+            insertPerson(father);
 
             addMarriageEvent(mother.getPersonID(), father.getPersonID(), generations);
         }
@@ -72,7 +77,10 @@ public class AncestorGenerator {
             addDeathEvent(person.getPersonID(), generations);
         }
 
-        // add person to database
+        // add the user's person to database
+        if (generations == maxGenerations) {
+            insertPerson(person);
+        }
 
         return person;
     }
@@ -187,7 +195,30 @@ public class AncestorGenerator {
             catch (DataAccessException ex) {
                 // at this point, the exception that closeConnection might throw has already caused the fatal error
             }
-            System.out.println("Error occurred while adding birth event");
+            System.out.println("Error occurred while generating event");
+        }
+    }
+
+    private void insertPerson(Person person) {
+        Database db = new Database();
+        try {
+            db.openConnection();
+            Connection conn = db.getConnection();
+
+            pDao = new PersonDAO(conn);
+            pDao.insertPerson(person);
+
+            db.closeConnection(true);
+        }
+        catch (DataAccessException e) {
+            e.printStackTrace();
+            try {
+                db.closeConnection(false);
+            }
+            catch (DataAccessException ex) {
+                // at this point, the exception that closeConnection might throw has already caused the fatal error
+            }
+            System.out.println("Error occurred while generating person");
         }
     }
 

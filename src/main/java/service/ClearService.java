@@ -2,6 +2,11 @@ package service;
 
 import service.result.ClearResult;
 
+import dao.*;
+import service.result.RegisterResult;
+
+import java.sql.Connection;
+
 /**
  * A service for clearing the database.
  */
@@ -13,7 +18,28 @@ public class ClearService {
      * @return the response body indicating success or error
      */
     public ClearResult clear() {
-        return null;
+        Database db = new Database();
+        try {
+            db.openConnection();
+            Connection conn = db.getConnection();
+
+            db.clearTables();
+
+            db.closeConnection(true);
+
+            ClearResult result = new ClearResult("Clear succeeded.", true);
+            return result;
+        }
+        catch (DataAccessException e) {
+            e.printStackTrace();
+            try {
+                db.closeConnection(false);
+            }
+            catch (DataAccessException ex) {
+                // at this point, the exception that closeConnection might throw has already caused the fatal error
+            }
+            return new ClearResult("Error: Internal server error", false);
+        }
     }
 
 }

@@ -27,7 +27,7 @@ public class RegisterService {
     public RegisterResult register(RegisterRequest r) {
         // make sure the request is valid
         if (!isValidRequest(r)) {
-            return new RegisterResult(false, "Request property missing or has invalid value");
+            return new RegisterResult("Error: Request property missing or has invalid value", false);
         }
 
         Database db = new Database();
@@ -36,14 +36,12 @@ public class RegisterService {
             db.openConnection();
             Connection conn = db.getConnection();
 
-            db.clearTables();
-
             // make sure the username isn't already taken
             uDao = new UserDAO(conn);
             User test = uDao.findUser(r.getUsername());
             if (test != null) {
                 db.closeConnection(false);
-                return new RegisterResult(false, "Username already taken");
+                return new RegisterResult("Error: Username already taken", false);
             }
 
             // after error checking, perform the register service
@@ -84,7 +82,7 @@ public class RegisterService {
             catch (DataAccessException ex) {
                 // at this point, the exception that closeConnection might throw has already caused the fatal error
             }
-            return new RegisterResult(false, "Internal server error");
+            return new RegisterResult("Error: Internal server error", false);
         }
 
     }

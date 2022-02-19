@@ -46,14 +46,14 @@ public class SinglePersonResult {
     private String spouseID;
 
     /**
-     * Whether the single person service was successful.
-     */
-    private boolean success;
-
-    /**
      * The error message if single person was not successful.
      */
     private String message;
+
+    /**
+     * Whether the single person service was successful.
+     */
+    private boolean success;
 
     /**
      * Default constructor
@@ -85,15 +85,15 @@ public class SinglePersonResult {
         this.fatherID = fatherID;
         this.motherID = motherID;
         this.spouseID = spouseID;
-        this.success = success;
         this.message = null;
+        this.success = success;
     }
 
     /**
      * Create an unsuccessful response body.
      *
-     * @param success response body failure
      * @param message response body error message
+     * @param success response body failure
      */
     public SinglePersonResult(boolean success, String message) {
         this.associatedUsername = null;
@@ -104,8 +104,8 @@ public class SinglePersonResult {
         this.fatherID = null;
         this.motherID = null;
         this.spouseID = null;
-        this.success = success;
         this.message = message;
+        this.success = success;
     }
 
     // Auto-generated getters and setters, no javadoc needed
@@ -173,20 +173,20 @@ public class SinglePersonResult {
         this.spouseID = spouseID;
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
     public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
 }

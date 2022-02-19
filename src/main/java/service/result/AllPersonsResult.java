@@ -14,14 +14,14 @@ public class AllPersonsResult {
     private ArrayList<Person> persons;
 
     /**
-     * Whether the all persons service was successful.
-     */
-    private boolean success;
-
-    /**
      * The error message if all persons was not successful.
      */
     private String message;
+
+    /**
+     * Whether the all persons service was successful.
+     */
+    private boolean success;
 
     /**
      * Default constructor
@@ -38,8 +38,8 @@ public class AllPersonsResult {
      */
     public AllPersonsResult(ArrayList<Person> persons, boolean success) {
         this.persons = persons;
-        this.success = success;
         this.message = null;
+        this.success = success;
     }
 
     /**
@@ -50,8 +50,8 @@ public class AllPersonsResult {
      */
     public AllPersonsResult(boolean success, String message) {
         this.persons = null;
-        this.success = success;
         this.message = message;
+        this.success = success;
     }
 
     // Auto-generated getters and setters, no javadoc needed
@@ -63,20 +63,20 @@ public class AllPersonsResult {
         this.persons = persons;
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
     public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
 }

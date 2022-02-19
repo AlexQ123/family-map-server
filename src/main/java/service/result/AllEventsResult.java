@@ -14,14 +14,14 @@ public class AllEventsResult {
     private ArrayList<Event> events;
 
     /**
-     * Whether the all events service was successful.
-     */
-    private boolean success;
-
-    /**
      * The error message if all events was not successful.
      */
     private String message;
+
+    /**
+     * Whether the all events service was successful.
+     */
+    private boolean success;
 
     /**
      * Default constructor
@@ -38,20 +38,20 @@ public class AllEventsResult {
      */
     public AllEventsResult(ArrayList<Event> events, boolean success) {
         this.events = events;
-        this.success = success;
         this.message = null;
+        this.success = success;
     }
 
     /**
      * Create an unsuccessful response body.
      *
-     * @param success response body failure
      * @param message response body error message
+     * @param success response body failure
      */
     public AllEventsResult(boolean success, String message) {
         this.events = null;
-        this.success = success;
         this.message = message;
+        this.success = success;
     }
 
     // Auto-generated getters and setters, no javadoc needed
@@ -63,20 +63,20 @@ public class AllEventsResult {
         this.events = events;
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
     public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
 }

@@ -24,6 +24,8 @@ public class Server {
         //TODO: CREATE CONTEXTS AS YOU ADD EACH HANDLER
         server.createContext("/", new FileHandler());
         server.createContext("/user/register", new RegisterHandler());
+        // server.createContext("/user/login", new LoginHandler());
+        server.createContext("/clear", new ClearHandler());
 
         System.out.println("Starting server");
         server.start();
