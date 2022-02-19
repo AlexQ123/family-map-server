@@ -59,7 +59,7 @@ public class LoginResult {
      * @param message response body error message
      * @param success response body failure
      */
-    public LoginResult(boolean success, String message) {
+    public LoginResult(String message, boolean success) {
         this.authtoken = null;
         this.username = null;
         this.personID = null;

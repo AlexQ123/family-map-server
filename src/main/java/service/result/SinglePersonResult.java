@@ -95,7 +95,7 @@ public class SinglePersonResult {
      * @param message response body error message
      * @param success response body failure
      */
-    public SinglePersonResult(boolean success, String message) {
+    public SinglePersonResult(String message, boolean success) {
         this.associatedUsername = null;
         this.personID = null;
         this.firstName = null;

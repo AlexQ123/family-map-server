@@ -103,7 +103,7 @@ public class SingleEventResult {
      * @param message response body error message
      * @param success response body failure
      */
-    public SingleEventResult(boolean success, String message) {
+    public SingleEventResult(String message, boolean success) {
         this.associatedUsername = null;
         this.eventID = null;
         this.personID = null;

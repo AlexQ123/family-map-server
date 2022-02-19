@@ -84,7 +84,6 @@ public class RegisterService {
             }
             return new RegisterResult("Error: Internal server error", false);
         }
-
     }
 
     private boolean isValidRequest(RegisterRequest r) {

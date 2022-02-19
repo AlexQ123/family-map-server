@@ -48,7 +48,7 @@ public class AllEventsResult {
      * @param message response body error message
      * @param success response body failure
      */
-    public AllEventsResult(boolean success, String message) {
+    public AllEventsResult(String message, boolean success) {
         this.events = null;
         this.message = message;
         this.success = success;

@@ -3,9 +3,6 @@ package service;
 import service.result.ClearResult;
 
 import dao.*;
-import service.result.RegisterResult;
-
-import java.sql.Connection;
 
 /**
  * A service for clearing the database.
@@ -21,7 +18,6 @@ public class ClearService {
         Database db = new Database();
         try {
             db.openConnection();
-            Connection conn = db.getConnection();
 
             db.clearTables();
 
