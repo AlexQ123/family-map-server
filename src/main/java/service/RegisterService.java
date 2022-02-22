@@ -15,8 +15,8 @@ import java.util.UUID;
  */
 public class RegisterService {
 
-    UserDAO uDao;
-    AuthTokenDAO aDao;
+    private UserDAO uDao;
+    private AuthTokenDAO aDao;
 
     /**
      * Registers a user into the database, creates 4 generations of ancestor data, and logs them in.
@@ -88,7 +88,7 @@ public class RegisterService {
 
     private boolean isValidRequest(RegisterRequest r) {
         return (r.getUsername() != null && r.getPassword() != null && r.getEmail() != null && r.getFirstName() != null
-        && r.getLastName() != null && (r.getGender().equals("f") || r.getGender().equals("m")));
+                && r.getLastName() != null && (r.getGender().equals("f") || r.getGender().equals("m")));
     }
 
 }

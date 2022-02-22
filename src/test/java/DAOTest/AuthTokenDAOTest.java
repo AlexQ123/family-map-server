@@ -3,15 +3,12 @@ package DAOTest;
 import dao.DataAccessException;
 import dao.Database;
 import dao.AuthTokenDAO;
-import dao.PersonDAO;
 import model.AuthToken;
-import model.Person;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 

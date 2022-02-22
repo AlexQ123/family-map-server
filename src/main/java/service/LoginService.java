@@ -14,8 +14,8 @@ import java.util.UUID;
  */
 public class LoginService {
 
-    UserDAO uDao;
-    AuthTokenDAO aDao;
+    private UserDAO uDao;
+    private AuthTokenDAO aDao;
 
     /**
      * Logs a user in.
