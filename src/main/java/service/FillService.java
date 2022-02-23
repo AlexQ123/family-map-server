@@ -5,7 +5,6 @@ import service.result.FillResult;
 import dao.*;
 import model.*;
 import generated.*;
-import service.result.RegisterResult;
 
 import java.sql.Connection;
 

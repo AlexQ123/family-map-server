@@ -85,6 +85,17 @@ public class Person {
         this.spouseID = spouseID;
     }
 
+    public Person(String personID, String associatedUsername, String firstName, String lastName, String gender) {
+        this.personID = personID;
+        this.associatedUsername = associatedUsername;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.fatherID = null;
+        this.motherID = null;
+        this.spouseID = null;
+    }
+
     // Auto-generated getters and setters, no javadoc needed
     public String getPersonID() {
         return personID;
