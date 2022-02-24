@@ -89,6 +89,20 @@ public class SinglePersonResult {
         this.success = success;
     }
 
+    public SinglePersonResult(String associatedUsername, String personID, String firstName, String lastName, String gender,
+                              boolean success) {
+        this.associatedUsername = associatedUsername;
+        this.personID = personID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.fatherID = null;
+        this.motherID = null;
+        this.spouseID = null;
+        this.message = null;
+        this.success = success;
+    }
+
     /**
      * Create an unsuccessful response body.
      *

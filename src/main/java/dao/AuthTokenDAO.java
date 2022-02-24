@@ -89,4 +89,34 @@ public class AuthTokenDAO {
         return success;
     }
 
+    public AuthToken getAuthToken(String token) throws DataAccessException {
+        AuthToken authtoken;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM Authtoken WHERE authtoken = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, token);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                authtoken = new AuthToken(rs.getString("authtoken"), rs.getString("username"));
+                return authtoken;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered getting authorization token");
+        }
+        finally {
+            if(rs != null) {
+                try {
+                    rs.close();
+                }
+                catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return null;
+    }
+
 }

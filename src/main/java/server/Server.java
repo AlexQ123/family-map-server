@@ -28,6 +28,7 @@ public class Server {
         server.createContext("/clear", new ClearHandler());
         server.createContext("/fill", new FillHandler());
         server.createContext("/load", new LoadHandler());
+        server.createContext("/person/", new SinglePersonHandler());
 
         System.out.println("Starting server");
         server.start();
