@@ -30,6 +30,7 @@ public class Server {
         server.createContext("/load", new LoadHandler());
         server.createContext("/person/", new SinglePersonHandler());
         server.createContext("/person", new AllPersonsHandler());
+        server.createContext("/event/", new SingleEventHandler());
 
         System.out.println("Starting server");
         server.start();

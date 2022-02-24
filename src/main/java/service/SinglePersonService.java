@@ -50,7 +50,6 @@ public class SinglePersonService {
             return new SinglePersonResult(personToFind.getAssociatedUsername(), personToFind.getPersonID(), personToFind.getFirstName(),
                     personToFind.getLastName(), personToFind.getGender(), personToFind.getFatherID(), personToFind.getMotherID(),
                     personToFind.getSpouseID(), true);
-
         }
         catch (DataAccessException e) {
             e.printStackTrace();

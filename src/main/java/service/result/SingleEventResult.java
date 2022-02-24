@@ -23,12 +23,12 @@ public class SingleEventResult {
     /**
      * The event's latitude in the response body.
      */
-    private float latitude;
+    private Float latitude;
 
     /**
      * The event's longitude in the response body.
      */
-    private float longitude;
+    private Float longitude;
 
     /**
      * The country in which the event took place in the response body.
@@ -48,7 +48,7 @@ public class SingleEventResult {
     /**
      * The year the event took place in the response body.
      */
-    private int year;
+    private Integer year;
 
     /**
      * The error message if single event was not successful.
@@ -107,12 +107,12 @@ public class SingleEventResult {
         this.associatedUsername = null;
         this.eventID = null;
         this.personID = null;
-        this.latitude = 0.0f;
-        this.longitude = 0.0f;
+        this.latitude = null;
+        this.longitude = null;
         this.country = null;
         this.city = null;
         this.eventType = null;
-        this.year = 0;
+        this.year = null;
         this.message = message;
         this.success = success;
     }
