@@ -1,6 +1,5 @@
 package service;
 
-import model.AuthToken;
 import service.result.AllPersonsResult;
 
 import dao.*;

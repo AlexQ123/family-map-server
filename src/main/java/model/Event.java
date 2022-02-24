@@ -6,14 +6,15 @@ package model;
 public class Event {
 
     /**
+     * The username of the user to which this event belongs.
+     */
+    private String associatedUsername;
+
+    /**
      * The unique identifier for the event.
      */
     private String eventID;
 
-    /**
-     * The username of the user to which this event belongs.
-     */
-    private String associatedUsername;
 
     /**
      * The ID of the person to which this event belongs.
@@ -80,8 +81,8 @@ public class Event {
      */
     public Event(String eventID, String associatedUsername, String personID, float latitude, float longitude,
                  String country, String city, String eventType, int year) {
-        this.eventID = eventID;
         this.associatedUsername = associatedUsername;
+        this.eventID = eventID;
         this.personID = personID;
         this.latitude = latitude;
         this.longitude = longitude;

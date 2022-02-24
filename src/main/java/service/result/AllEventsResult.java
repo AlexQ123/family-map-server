@@ -11,7 +11,7 @@ public class AllEventsResult {
     /**
      * The array of events in the response body.
      */
-    private ArrayList<Event> events;
+    private ArrayList<Event> data;
 
     /**
      * The error message if all events was not successful.
@@ -37,7 +37,7 @@ public class AllEventsResult {
      * @param success response body success
      */
     public AllEventsResult(ArrayList<Event> events, boolean success) {
-        this.events = events;
+        this.data = events;
         this.message = null;
         this.success = success;
     }
@@ -49,18 +49,18 @@ public class AllEventsResult {
      * @param success response body failure
      */
     public AllEventsResult(String message, boolean success) {
-        this.events = null;
+        this.data = null;
         this.message = message;
         this.success = success;
     }
 
     // Auto-generated getters and setters, no javadoc needed
-    public ArrayList<Event> getEvents() {
-        return events;
+    public ArrayList<Event> getData() {
+        return data;
     }
 
-    public void setEvents(ArrayList<Event> events) {
-        this.events = events;
+    public void setData(ArrayList<Event> events) {
+        this.data = events;
     }
 
     public String getMessage() {

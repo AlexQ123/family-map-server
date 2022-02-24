@@ -21,7 +21,6 @@ public class Server {
         }
         server.setExecutor(null);
         System.out.println("Creating contexts");
-        //TODO: CREATE CONTEXTS AS YOU ADD EACH HANDLER
         server.createContext("/", new FileHandler());
         server.createContext("/user/register", new RegisterHandler());
         server.createContext("/user/login", new LoginHandler());
@@ -31,6 +30,7 @@ public class Server {
         server.createContext("/person/", new SinglePersonHandler());
         server.createContext("/person", new AllPersonsHandler());
         server.createContext("/event/", new SingleEventHandler());
+        server.createContext("/event", new AllEventsHandler());
 
         System.out.println("Starting server");
         server.start();
