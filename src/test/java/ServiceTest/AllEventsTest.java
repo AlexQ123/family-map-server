@@ -5,8 +5,8 @@ import dao.Database;
 import dao.AuthTokenDAO;
 import dao.EventDAO;
 import dao.UserDAO;
-import service.result.SingleEventResult;
-import service.SingleEventService;
+import service.result.AllEventsResult;
+import service.AllEventsService;
 import model.*;
 
 import org.junit.jupiter.api.AfterEach;
@@ -17,10 +17,10 @@ import java.sql.Connection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SingleEventTest {
+public class AllEventsTest {
 
     private Database db;
-    private SingleEventService service;
+    private AllEventsService service;
     private UserDAO uDao;
     private AuthTokenDAO aDao;
     private EventDAO eDao;
@@ -28,7 +28,7 @@ public class SingleEventTest {
     @BeforeEach
     public void setUp() throws DataAccessException {
         db = new Database();
-        service = new SingleEventService();
+        service = new AllEventsService();
         Connection conn = db.getConnection();
         uDao = new UserDAO(conn);
         aDao = new AuthTokenDAO(conn);
@@ -39,7 +39,9 @@ public class SingleEventTest {
         AuthToken authToken = new AuthToken("goodToken", "test");
         aDao.insertAuthToken(authToken);
         Event event = new Event("goodID", "test", "", 10.9f, 9.10f, "", "", "", 0);
+        Event event2 = new Event("goodID2", "test", "", 10.10f, 9.9f, "", "", "", 0);
         eDao.insertEvent(event);
+        eDao.insertEvent(event2);
         db.closeConnection(true);
     }
 
@@ -51,18 +53,19 @@ public class SingleEventTest {
     }
 
     @Test
-    public void singleEventSuccess() throws DataAccessException {
-        SingleEventResult result = service.singleEvent("goodID", "goodToken");
+    public void allEventsSuccess() throws DataAccessException {
+        AllEventsResult result = service.allEvents("goodToken");
         assertTrue(result.isSuccess());
-        assertEquals("goodID", result.getEventID());
-        assertEquals("test", result.getAssociatedUsername());
+        assertEquals("goodID", result.getData().get(0).getEventID());
+        assertEquals("goodID2", result.getData().get(1).getEventID());
+        assertThrows(IndexOutOfBoundsException.class, () -> result.getData().get(2).getEventID());
     }
 
     @Test
-    public void singleEventFailure() throws DataAccessException {
-        SingleEventResult result = service.singleEvent("badID", "goodToken");
+    public void allEventsFailure() throws DataAccessException {
+        AllEventsResult result = service.allEvents("badToken");
         assertFalse(result.isSuccess());
-        assertEquals("Error: Invalid eventID parameter", result.getMessage());
+        assertEquals("Error: Invalid authtoken", result.getMessage());
     }
 
 }
