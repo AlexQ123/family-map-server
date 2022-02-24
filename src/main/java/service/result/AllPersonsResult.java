@@ -11,7 +11,7 @@ public class AllPersonsResult {
     /**
      * The array of persons in the response body.
      */
-    private ArrayList<Person> persons;
+    private ArrayList<Person> data;
 
     /**
      * The error message if all persons was not successful.
@@ -37,7 +37,7 @@ public class AllPersonsResult {
      * @param success response body success
      */
     public AllPersonsResult(ArrayList<Person> persons, boolean success) {
-        this.persons = persons;
+        this.data = persons;
         this.message = null;
         this.success = success;
     }
@@ -49,18 +49,18 @@ public class AllPersonsResult {
      * @param message response body error message
      */
     public AllPersonsResult(String message, boolean success) {
-        this.persons = null;
+        this.data = null;
         this.message = message;
         this.success = success;
     }
 
     // Auto-generated getters and setters, no javadoc needed
-    public ArrayList<Person> getPersons() {
-        return persons;
+    public ArrayList<Person> getData() {
+        return data;
     }
 
-    public void setPersons(ArrayList<Person> persons) {
-        this.persons = persons;
+    public void setData(ArrayList<Person> persons) {
+        this.data = persons;
     }
 
     public String getMessage() {

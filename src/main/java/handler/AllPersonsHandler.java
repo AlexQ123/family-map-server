@@ -1,14 +1,14 @@
 package handler;
 
-import service.result.SinglePersonResult;
-import service.SinglePersonService;
+import service.result.AllPersonsResult;
+import service.AllPersonsService;
 
 import java.io.*;
 import java.net.*;
 import com.sun.net.httpserver.*;
 import com.google.gson.Gson;
 
-public class SinglePersonHandler implements HttpHandler {
+public class AllPersonsHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
@@ -18,11 +18,9 @@ public class SinglePersonHandler implements HttpHandler {
                 Headers reqHeaders = exchange.getRequestHeaders();
                 if (reqHeaders.containsKey("Authorization")) {
                     String authtoken = reqHeaders.getFirst("Authorization");
-                    String urlPath = exchange.getRequestURI().toString();
-                    String toParse = urlPath.substring(8);
 
-                    SinglePersonService service = new SinglePersonService();
-                    SinglePersonResult result = service.singlePerson(toParse, authtoken);
+                    AllPersonsService service = new AllPersonsService();
+                    AllPersonsResult result = service.allPersons(authtoken);
 
                     if (result.isSuccess()) {
                         exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
