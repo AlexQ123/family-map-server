@@ -45,34 +45,31 @@ public class RegisterService {
             }
 
             // after error checking, perform the register service
-            else {
-                AncestorGenerator generator = new AncestorGenerator();
-                generator.setMaxGenerations(4);
-                generator.setUsername(r.getUsername());
-                generator.setUserFirstName(r.getFirstName());
-                generator.setUserLastName(r.getLastName());
+            AncestorGenerator generator = new AncestorGenerator();
+            generator.setMaxGenerations(4);
+            generator.setUsername(r.getUsername());
+            generator.setUserFirstName(r.getFirstName());
+            generator.setUserLastName(r.getLastName());
 
-                // generate 4 generations of ancestor data, this returns the person associated with the user
-                // since generatePerson access the DB, close and re-open connection here too
-                db.closeConnection(true);
-                Person person = generator.generatePerson(r.getGender(), 4);
-                conn = db.getConnection();
-                uDao = new UserDAO(conn);
+            // generate 4 generations of ancestor data, this returns the person associated with the user
+            // since generatePerson access the DB, close and re-open connection here too
+            db.closeConnection(true);
+            Person person = generator.generatePerson(r.getGender(), 4);
+            conn = db.getConnection();
+            uDao = new UserDAO(conn);
 
-                // create the user account (user row in database)
-                uDao.insertUser(new User(r.getUsername(), r.getPassword(), r.getEmail(), r.getFirstName(), r.getLastName(),
-                        r.getGender(), person.getPersonID()));
+            // create the user account (user row in database)
+            uDao.insertUser(new User(r.getUsername(), r.getPassword(), r.getEmail(), r.getFirstName(), r.getLastName(),
+                    r.getGender(), person.getPersonID()));
 
-                // logs user in
-                AuthToken authtoken = new AuthToken(UUID.randomUUID().toString(), r.getUsername());
-                aDao = new AuthTokenDAO(conn);
-                aDao.insertAuthToken(authtoken);
+            // logs user in
+            AuthToken authtoken = new AuthToken(UUID.randomUUID().toString(), r.getUsername());
+            aDao = new AuthTokenDAO(conn);
+            aDao.insertAuthToken(authtoken);
 
-                // close the connection and return result object
-                db.closeConnection(true);
-                RegisterResult result = new RegisterResult(authtoken.getAuthtoken(), r.getUsername(), person.getPersonID(), true);
-                return result;
-            }
+            // close the connection and return result object
+            db.closeConnection(true);
+            return new RegisterResult(authtoken.getAuthtoken(), r.getUsername(), person.getPersonID(), true);
         }
         catch (DataAccessException e) {
             e.printStackTrace();

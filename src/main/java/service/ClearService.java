@@ -23,8 +23,7 @@ public class ClearService {
 
             db.closeConnection(true);
 
-            ClearResult result = new ClearResult("Clear succeeded.", true);
-            return result;
+            return new ClearResult("Clear succeeded.", true);
         }
         catch (DataAccessException e) {
             e.printStackTrace();

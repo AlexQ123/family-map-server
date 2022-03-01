@@ -39,20 +39,18 @@ public class LoginService {
                 db.closeConnection(false);
                 return new LoginResult("Error: Username not found", false);
             }
-            else if (!toFind.getPassword().equals(r.getPassword())) {
+
+            if (!toFind.getPassword().equals(r.getPassword())) {
                 db.closeConnection(false);
                 return new LoginResult("Error: Incorrect password", false);
             }
-            else {
-                AuthToken authtoken = new AuthToken(UUID.randomUUID().toString(), r.getUsername());
-                aDao = new AuthTokenDAO(conn);
-                aDao.insertAuthToken(authtoken);
 
-                db.closeConnection(true);
-                LoginResult result = new LoginResult(authtoken.getAuthtoken(), toFind.getUsername(), toFind.getPersonID(),
-                        true);
-                return result;
-            }
+            AuthToken authtoken = new AuthToken(UUID.randomUUID().toString(), r.getUsername());
+            aDao = new AuthTokenDAO(conn);
+            aDao.insertAuthToken(authtoken);
+
+            db.closeConnection(true);
+            return new LoginResult(authtoken.getAuthtoken(), toFind.getUsername(), toFind.getPersonID(), true);
         }
         catch (DataAccessException e) {
             e.printStackTrace();

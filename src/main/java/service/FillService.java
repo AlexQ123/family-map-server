@@ -57,8 +57,7 @@ public class FillService {
             int numPersons = (int) Math.pow(2, (generations + 1)) - 1;
             int numEvents = numPersons * 3 - 2;
             String outputMessage = "Successfully added " + numPersons + " persons and " + numEvents + " events to the database.";
-            FillResult result = new FillResult(outputMessage, true);
-            return result;
+            return new FillResult(outputMessage, true);
         }
         catch (DataAccessException e) {
             e.printStackTrace();

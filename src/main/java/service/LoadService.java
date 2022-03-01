@@ -54,8 +54,7 @@ public class LoadService {
 
             String outputMessage = "Successfully added " + users.size() + " users, " + persons.size() + " persons, and " +
                     events.size() + " events to the database.";
-            LoadResult result = new LoadResult(outputMessage, true);
-            return result;
+            return new LoadResult(outputMessage, true);
         }
         catch (DataAccessException e) {
             e.printStackTrace();
